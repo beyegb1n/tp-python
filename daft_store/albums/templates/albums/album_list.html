@@ -41,10 +41,44 @@
         font-weight: bold;
         color: #000;
       }
+      header {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+      }
     </style>
   </head>
   <body>
+    <header>
+      <div>
+        {% if user.is_authenticated %}
+        <p>Bonjour</p>
+        <form action="{% url 'logout' %}" method="post" style="display: inline">
+          {% csrf_token %}
+          <button
+            type="submit"
+            style="
+              background: none;
+              border: none;
+              color: blue;
+              text-decoration: underline;
+              cursor: pointer;
+            "
+          >
+            Se déconnecter
+          </button>
+        </form>
+
+        {% else %}
+        <a href="{% url 'login' %}">Se connecter</a>
+        {% endif %}
+      </div>
+    </header>
     <h1>Liste des Albums de Daft Punk</h1>
+    <div class="button-container">
+      <a href="{% url 'add_album' %}" class="btn">Ajouter un Album</a>
+    </div>
     <div>
       {% for album in albums %}
       <div class="album">
