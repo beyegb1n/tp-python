@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Détails de l'Album</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 20px;
+      }
+      .album {
+        text-align: center;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .album img {
+        width: 300px;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+      .album-title {
+        font-size: 2em;
+        margin-bottom: 10px;
+      }
+      .album-description {
+        margin-bottom: 10px;
+        color: #666;
+      }
+      .album-price {
+        font-weight: bold;
+        font-size: 1.5em;
+        margin-bottom: 20px;
+      }
+      a {
+        text-decoration: none;
+        color: #007bff;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="album">
+      <img src="{{ album.cover_image.url }}" alt="{{ album.title }}" />
+      <div class="album-title">{{ album.title }}</div>
+      <div class="album-description">{{ album.description }}</div>
+      <div class="album-price">{{ album.price }} €</div>
+      <div>Sortie le : {{ album.release_date }}</div>
+      <a href="{% url 'album_list' %}">Retour à la liste des albums</a>
+    </div>
+  </body>
+</html>

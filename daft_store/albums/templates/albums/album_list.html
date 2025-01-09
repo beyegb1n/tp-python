@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Liste des Albums</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 20px;
+      }
+      .album {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 10px;
+        background: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+      .album img {
+        width: 150px;
+        height: auto;
+        margin-right: 20px;
+        border-radius: 8px;
+      }
+      .album-details {
+        flex: 1;
+      }
+      .album-title {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+      }
+      .album-description {
+        margin-bottom: 10px;
+        color: #666;
+      }
+      .album-price {
+        font-weight: bold;
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Liste des Albums de Daft Punk</h1>
+    <div>
+      {% for album in albums %}
+      <div class="album">
+        <img src="{{ album.cover_image.url }}" alt="{{ album.title }}" />
+        <div class="album-details">
+          <a href="{% url 'album_detail' album.id %}">
+            <div class="album-title">{{ album.title }}</div>
+          </a>
+          <div class="album-description">{{ album.description }}</div>
+          <div class="album-price">{{ album.price }} €</div>
+          <div>Sortie le : {{ album.release_date }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
